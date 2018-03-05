@@ -1,0 +1,26 @@
+void quicksort(int *array, int low, int high)
+{
+	int pivot = array[low];
+	int pivot_index=low;
+	int low_record=low;
+	int high_record=high;
+
+	if(low>=high)
+		return;
+
+	while(low<high)
+	{
+		while(low<high && array[high]>pivot)
+			high--;
+		array[pivot_index]=array[high];
+		pivot_index=high;
+		while(low<high && array[low]<pivot)
+			low++;
+		array[pivot_index]=array[low];
+		pivot_index=low;
+	}
+	array[pivot_index]=pivot;
+	quicksort(array, low_record, pivot_index-1);
+	quicksort(array, pivot_index+1, high_record);
+	return;
+}
